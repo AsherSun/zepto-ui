@@ -1,0 +1,12 @@
+.title, .noTitle, .moreBtns {
+    width: 7rem;
+    margin: 0.2rem auto 0;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    border: 1px solid #c7bcbc;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: red;
+} 

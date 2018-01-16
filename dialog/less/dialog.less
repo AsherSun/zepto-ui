@@ -1,0 +1,54 @@
+.wptdialog {
+  .dialog-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    opacity: 0.8;
+    background-color: rgb(0, 0, 0);
+    z-index: 19999;
+  }
+  .dialog-main {
+    z-index: 29999;
+    position: fixed;
+    top: 50%;
+    left: 0.6rem;
+    right: 0.6rem;
+    background-color: #fff;
+    border-radius: 3%;
+    overflow: hidden;
+    transform: translateY(-50%);
+    &-title {
+      padding-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+    &-txt {
+      padding: .53rem .4rem;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #525252;
+      text-align: center;
+    }
+    &-btn {
+      display: flex;
+      .btn-item {
+        flex: 1;
+        color: #fff;
+        background-color: #4577dc;
+        display: block;
+        line-height: 3;
+        text-align: center;
+        box-sizing: border-box;
+        &:first-child {
+          border-right: 1px solid #3F51B5;
+        }
+      }
+    }
+  }
+}

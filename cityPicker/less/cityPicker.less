@@ -1,0 +1,103 @@
+.btn {
+  display: block;
+  width: 7.3rem;
+  margin: 0 auto;
+  height: 1rem;
+  line-height: 1rem;
+  outline: none;
+  border-radius: 5px;
+}
+.as_picker {
+  .as_mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0, .4)
+  }
+  .as_section {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 5000;
+    background-color: #FFF;
+    .as_headBtn {
+      display: flex;
+      height: 50px;
+      flex-flow:row nowrap;
+      justify-content: space-between;
+      a {
+        line-height: 50px;
+        &:first-child {
+          padding-left: 15px;
+        }
+        &:last-child {
+          padding-right: 15px;
+        }
+      }
+    }
+    .as_content {
+      display:flex;
+      height: 4rem;
+      overflow: hidden;
+      flex-flow: row nowrap;
+      &_slot {
+        flex: 1;
+        position: relative;
+      }
+      // 列表盒子
+      &_list {
+        // 每一项
+        &_item {
+          text-align: center;
+          height: .8rem;
+          line-height: .8rem;
+        }
+      }
+      // 遮罩层
+      &_mask {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        z-index: 3;
+        top: 0;
+        height: 100%;
+        margin: 0 auto;
+        background: linear-gradient(180deg,hsla(0,0%,100%,.95),hsla(0,0%,100%,.3)),linear-gradient(0deg,hsla(0,0%,100%,.95),hsla(0,0%,100%,.3));
+        background: -webkit-linear-gradient(top,hsla(0,0%,100%,.95),hsla(0,0%,100%,.3)),-webkit-linear-gradient(bottom,hsla(0,0%,100%,.95),hsla(0,0%,100%,.3));
+        background-position: top,bottom;
+        background-size: 100% 102px;
+        background-repeat: no-repeat;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      // 选中的标识
+      &_indicator {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: .8rem;
+        width: 100%;
+        transform: translateY(-50%);
+        &:before, &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: #ea8888;
+          transform: scaleY(0.5);
+        }
+        &:after {
+          bottom: 0px;
+        }
+        &:before {
+          top: 0;
+        }
+      }
+    }
+  }
+}

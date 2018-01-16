@@ -1,0 +1,58 @@
+/*
+    loading-2 动画
+    author:asher sun
+    verisons:0.1.0
+    date:2017/10/05
+*/
+@twoR:50rem;
+@twoW:20/@twoR;
+@twoH:20/@twoR;
+.loadingTwo{
+  display:flex;
+  flex-flow:wrap column;
+  align-items:center;
+  .animateTwo{
+    position:relative;
+    &:before{
+      content:'';
+      display:block;
+      width:@twoW;
+      height:@twoW;
+      border-radius:50%;
+      border:3px solid rgba(0,0,0,.1);
+    }
+    &:after{
+      content:'';
+      display:block;
+      position:absolute;
+      width:@twoW;
+      height:@twoW;
+      border-radius:50%;
+      top:0;
+      bottom:0;
+      border:3px solid transparent;
+      border-left-color:#FFF;
+      animation-name:circle;
+      animation-duration:1s;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+      animation-direction:normal;
+    }
+  }
+}
+@keyframes circle{
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg);
+  }
+}
+@-webkit-keyframes circle{
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg);
+  }
+}

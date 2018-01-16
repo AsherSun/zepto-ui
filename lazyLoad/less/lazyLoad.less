@@ -1,0 +1,32 @@
+.content {
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #ddd;
+  ul {
+    width: 33.333%;
+    overflow: hidden;
+    &:nth-child(2) {
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+    li {
+      list-style: none;
+      width: 100%;
+      background-color: aqua;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      margin-bottom: 5px;
+      min-height: 50px;
+    }
+    img {
+      display: block;
+      line-height: 0;
+      width: inherit;
+      height: 100%;
+    }
+  }
+}

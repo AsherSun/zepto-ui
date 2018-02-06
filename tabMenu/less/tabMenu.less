@@ -1,0 +1,51 @@
+.tabMenu-section {
+  width: 7.5rem;
+  .tabMenu-header {
+    display: flex;
+    flex-flow: row wrap;
+    &-items {
+      flex: 1;
+      position: relative;
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+      &.selected {
+        color: #4577dc;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 1px;
+          width: 100%;
+          background-color: #4577dc;
+        }
+      }
+    }
+  }
+  .tabMenu-body {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 2rem;
+    overflow: hidden;
+    &-content {
+      flex-shrink: 0;
+      text-align: center;
+      width: 7.5rem;
+      line-height: 2rem;
+    }
+  }
+}
+
+.tabMenu-header-items + .tabMenu-header-items {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 50%;
+    background-color: #ddd;
+    top: 50%;
+    transform: translate3d(0, -50%, 0) scaleX(0.5);
+  }
+}

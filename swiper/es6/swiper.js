@@ -49,7 +49,10 @@
 				direction: '',
 				// 初始化的时候 显示哪个轮播项
 				initialSlide: 0,
-				multiMove: false
+				// 用于判断是否滑动多个滑块
+				multiMove: false,
+				// 用来处理滑块业务结束之后要处理的业务 默认参数为当前轮播项的索引
+				endFn: null
 			}, options)
 
 			// 初始化的时候缓存定时器的时间
@@ -72,8 +75,12 @@
 		findDom() {
 			this._wrapper = this.el.find(this.config.wrapper)
 			this._slider = this.el.find(this.config.slider)
-			this._sliderWidth = this._slider.offset().width
-			this._sliderHeight = this._slider.offset().height
+			try{
+				this._sliderWidth = this._slider.offset().width
+				this._sliderHeight = this._slider.offset().height
+			}catch(e) {
+				// console.log(e)
+			}
 		}
 
 		// 创建 轮播的切换按钮 (分页器）
@@ -116,8 +123,7 @@
 			this.ss = clearInterval(this.time)
 			this.startX = e.changedTouches[0].clientX
 			this.startY = e.changedTouches[0].clientY
-			// console.log('startX: ', this.startX)
-			// console.log('startY: ', this.startY)
+			// 开始的时候缓存索引 主要用于Touchemove 中的逻辑 减一是因为 touchend 中的索引会 ++ || --
 			this.cacheIndex = this.config.initialSlide - 1
 		}
 
@@ -128,6 +134,8 @@
 			// 计算 this.translate的值
 			// 计算 this.config.initialSlide
 			this.translate = this.config.direction ? moveEndY - this.startY : moveEndX - this.startX
+			// console.log(this.translate)
+
 			/*
 			* 改变 translate3d 的值
 			* */
@@ -136,8 +144,8 @@
 			// 	'transition': 'none',
 			// 	'transform': `translate3d(${this.translate + this.translateChange}px,0,0)`
 			// })
-			// console.log('moveEndX: ', moveEndX)
-			// console.log
+			// console.log(Math.round(Math.abs(this.translate / this._sliderHeight)))
+			// 开启多个持续操作
 			if (this.config.multiMove) this.config.initialSlide = this.cacheIndex + Math.floor(this.translate / this._sliderHeight) * -1
 			this._wrapperTranslate(this.translate + this.translateChange)
 		}
@@ -177,7 +185,6 @@
 					})
 					console.log('往左', this.config.initialSlide)
 				}*/
-
 				// 判断 用户行为是： 往左还是往右 || 往上还是往下
 				this.advanceOrRetreat()
 				this.translate = 0
@@ -192,6 +199,7 @@
 				// })
 			}
 			if (this.config.autoplay) this.autoplay()
+			this.config.endFn && this.config.endFn(this.config.initialSlide)
 		}
 
 		// 轮播切换

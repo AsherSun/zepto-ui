@@ -14,12 +14,12 @@ $(function ($) {
 	let n = 10
 	let j = -1
 	let m = -5
-	$('ul').upRefresh({
+	$('.scrollArea-loadData').upRefresh({
 		scrollArea: window,
 		up: function () {
 			let c = getRandomColor();
 			for (; j > m; j--) {
-				$('ul').children().eq(0).before(`<li style='color:${c}'>up-item: ${j} data</li>`)
+				$('.scrollArea-loadData').children().eq(0).before(`<li class="scrollArea-loadData-items" style='color:${c}'>up-item: ${j} data</li>`)
 			}
 			j = m
 			m -= 4
@@ -28,7 +28,7 @@ $(function ($) {
 			// console.log(self)
 			let c = getRandomColor();
 			for (; i < n; i++) {
-				$('ul').append(`<li style="background-color:${c};color: #FFF">down-item: ${i} data</li>`)
+				$('.scrollArea-loadData').append(`<li class="scrollArea-loadData-items" style="background-color:${c};color: #FFF">down-item: ${i} data</li>`)
 			}
 			self.flag = true
 			i = n
@@ -70,7 +70,7 @@ $(function ($) {
 			down: function (self) {
 				if ($('.container').eq(index).css('display') === 'block') {
 					let color = getRandomColor()
-					for (let i = 0; i < 10; i++) {
+					for (let i = 0; i < 20; i++) {
 						$('.container').eq(index).append(`<li class='container-list' style='background-color:${color};color:#FFF'>第${index + 1}个选项卡</li>`)
 					}
 				}

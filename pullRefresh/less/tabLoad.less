@@ -5,14 +5,29 @@
   height: 45px;
   justify-content: space-around;
   width: 100%;
+  background-color: #FFF;
   &-item {
     height: 100%;
     width: 100%;
     text-align: center;
     line-height: 45px;
     cursor: pointer;
+    position: relative;
     &.selected {
       color: #2688d6;
+    }
+    &:after {
+      position: absolute;
+      content: '';
+      right: 0;
+      top: 50%;
+      width: 1px;
+      height: 50%;
+      transform: translate3d(0, -50%, 0) scaleX(0.5);
+      background-color: #d9d9d9;
+    }
+    &:last-child:after {
+      display: none;
     }
   }
   &:after {

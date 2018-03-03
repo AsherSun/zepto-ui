@@ -6,8 +6,41 @@
 	<meta name="viewport"
 	      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<link rel="stylesheet" href="public/global.css">
+	<style>
+		div {
+			line-height: 2;
+			text-indent: 24px;
+		}
+
+		p {
+			height: 45px;
+			line-height: 45px;
+			text-indent: 24px;
+			background-color: #FFF;
+			position: relative;
+		}
+
+		p:after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 24px;
+			right: 0;
+			height: 1px;
+			background-color: #d9d9d9;
+			transform: scaleY(0.5);
+		}
+
+		p a {
+			font-size: 14px;
+		}
+	</style>
 </head>
 <body>
+<div>
+	这是一个基于zepto 开发的 js 移动端常用插件库
+	用node 将本地服务 跑起来之后，请用 手机扫描<a href="https://cli.im/">‘草料二维码生成器’</a> 生成的 二维码进行移动端预览
+</div>
 <p><a href="dialog/index.html">dialog</a></p>
 <p><a href="lazyLoad/index.html">lazyLoad</a></p>
 <p><a href="popover/index.html">popover</a></p>
@@ -16,6 +49,5 @@
 <p><a href="cityPicker/index.html">cityPicker</a></p>
 <p><a href="tabMenu/index.html">tabMenu</a></p>
 <script src="public/rem.js"></script>
-
 </body>
 </html>

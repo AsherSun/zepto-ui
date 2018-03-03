@@ -1,14 +1,41 @@
 .tabMenu-section {
   width: 7.5rem;
+  overflow: hidden;
   .tabMenu-header {
     display: flex;
     flex-flow: row wrap;
+    position: relative;
+    background-color: #FFF;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #d9d9d9;
+      transform: scaleY(0.5);
+      left: 0;
+      right: 0;
+    }
     &-items {
       flex: 1;
       position: relative;
       text-align: center;
       height: 45px;
       line-height: 45px;
+      &:before{
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        height: 50%;
+        width: 1px;
+        transform: translate3d(0, -50%, 0) scaleX(0.5);
+        background-color: #d9d9d9;
+      }
+      &:last-child:before{
+        display: none;
+      }
       &.selected {
         color: #4577dc;
         &:after {
@@ -27,25 +54,17 @@
     display: flex;
     flex-flow: row nowrap;
     height: 2rem;
-    overflow: hidden;
     &-content {
       flex-shrink: 0;
       text-align: center;
       width: 7.5rem;
+      background-color: #74bdd8;
       line-height: 2rem;
     }
   }
 }
-
-.tabMenu-header-items + .tabMenu-header-items {
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 1px;
-    height: 50%;
-    background-color: #ddd;
-    top: 50%;
-    transform: translate3d(0, -50%, 0) scaleX(0.5);
-  }
+h3 {
+  height: 50px;
+  line-height: 50px;
+  text-indent: 24px;
 }

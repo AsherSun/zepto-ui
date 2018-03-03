@@ -35,44 +35,41 @@ class TabMenu {
 
 	// 获取 DOM 节点
 	getDoms(obj) {
-		console.log(obj.menu)
 		this.menuDom = $(obj.menu)
 		this.contentDom = $(obj.content)
+		this.contentDomWidth = this.contentDom.offset().width
+		this.contentDomParent = this.contentDom.parent()
+		this.showIndex(obj.indexes, obj.active)
 	}
 
+	// 处理初始化默认选择第几个选项
+	showIndex(...args) {
+		if(args[0] >= this.menuDom.length || args[0] < 0) return false
+		this.menuDom.eq(args[0]).addClass(args[1]).siblings().removeClass(args[1])
+		this.switchMode(args[0])
+	}
 	// 用于点击处理
 	userTap(obj) {
 		let self = this
-		let contentDomParent = self.contentDom.parent()
 		this.menuDom.on(obj.events, function (e) {
 			// console.log($(this).index())
 			$(this).addClass(obj.active).siblings().removeClass(obj.active)
 			// 判断选项卡以何种方式切换 slide
-			switch(obj.tab_action){
-				case 'slide':
-					let contentDomWidth = self.contentDom.offset().width
-					self.openSlide($(this).index(), contentDomWidth, contentDomParent)
-					break
-				case 'scale':
-					self.openScale($(this).index(), contentDomParent)
-					break
-				default:
-					self.contentDom.eq($(this).index()).show().siblings().hide()
-			}
+			self.switchMode($(this).index())
 		})
 	}
 
 	//  slide 滑动逻辑
-	openSlide(i, ...args) {
-		args[1].css({
+	openSlide(i) {
+		this.contentDomParent.css({
 			transition: 'transform ease .5s',
-			transform: `translate3d(${i * args[0] * -1}px, 0, 0)`
+			transform: `translate3d(${i * this.contentDomWidth * -1}px, 0, 0)`
 		})
 	}
 
 	// scale 缩放 逻辑
-	openScale(i, ...args) {
-		args[0].css('position', 'relative')
+	openScale(i) {
+		this.contentDomParent.css('position', 'relative')
 		this.contentDom.eq(i).css({
 			transition: 'transform ease .5s',
 			position: 'static',
@@ -82,6 +79,20 @@ class TabMenu {
 			transform: 'scale3d(0,0,0)',
 			position: 'absolute'
 		})
+	}
+
+	// 选项卡切换方式的判断
+	switchMode(i) {
+		switch(this.config.tab_action){
+			case 'slide':
+				this.openSlide(i)
+				break
+			case 'scale':
+				this.openScale(i)
+				break
+			default:
+				this.contentDom.eq(i).show().siblings().hide()
+		}
 	}
 }
 

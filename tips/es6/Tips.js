@@ -15,7 +15,6 @@ class Tip {
 		// 创建 tip 提示 盒子
 		this.tipBox = $('<div class="bbt-ui-tip"></div>')
 		this.init(op)
-
 	}
 
 	init(op) {
@@ -25,12 +24,14 @@ class Tip {
 		}, op)
 		this.insertTip(this.config)
 	}
+
 	// 消息插入到文档中
-	insertTip(config){
+	insertTip(config) {
 		if (!config.text) return false
 		$('body').append(this.tipBox.text(config.text))
 		this.showTip(config)
 	}
+
 	// 显示
 	showTip(config) {
 		setTimeout(() => {
@@ -38,6 +39,7 @@ class Tip {
 		}, 50)
 		this.removeTip(config)
 	}
+
 	// 自删
 	removeTip(config) {
 		setTimeout(() => {

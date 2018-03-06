@@ -20,6 +20,23 @@ class Tip {
 	init(op) {
 		this.config = $.extend({
 			text: '',
+			tipStyle: `<style tips="tips">
+				.bbt-ui-tip {
+					position: fixed;
+					z-index: 2001;
+					background-color: #edf2fc;
+					width: 100%;
+					text-align: center;
+					line-height: 1.8;
+					font-size: 14px;
+					left: 50%;
+					transform: translateX(-50%);
+					top: -100%;
+					padding: 12px 10px;
+					box-sizing: border-box;
+					transition: top 1s ease;
+				}
+			  </style>`,
 			delay: 3000,
 		}, op)
 		this.insertTip(this.config)
@@ -28,6 +45,7 @@ class Tip {
 	// 消息插入到文档中
 	insertTip(config) {
 		if (!config.text) return false
+		this.addTipStyle(config)
 		$('body').append(this.tipBox.text(config.text))
 		this.showTip(config)
 	}
@@ -48,6 +66,13 @@ class Tip {
 		setTimeout(() => {
 			this.tipBox.remove()
 		}, config.delay + 150)
+	}
+
+	// 插入样式
+	addTipStyle(config) {
+		if(!config.tipStyle) return false
+		if($('[tips="tips"]')[0]) return false
+		$('head').append(config.tipStyle)
 	}
 }
 
